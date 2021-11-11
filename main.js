@@ -37,3 +37,17 @@ function fillSuggestionsList(suggestions) {
 }
 
 getSuggestions().then(fillSuggestionsList)
+
+const searchField = document.getElementById("searchField")
+
+function onSuggestionsScroll(e) {
+  /** @type {HTMLElement} */
+  const suggestionsElem = e.target
+  const { scrollTop } = suggestionsElem
+
+  const searchFieldFloatClassName = "search__nav"
+  const isSearchFieldFloating = searchField.classList.contains(searchFieldFloatClassName)
+
+  scrollTop === 0 && isSearchFieldFloating && searchField.classList.remove(searchFieldFloatClassName)
+  scrollTop > 0 && !isSearchFieldFloating && searchField.classList.add(searchFieldFloatClassName)
+}

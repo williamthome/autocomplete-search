@@ -8,6 +8,7 @@
   --suggestion-max-height: 13rem;
   --suggestion-hover-bg-color: #ccc;
   --suggestion-border-radius: 0.5rem;
+  --separator-color: #ccc;
 }
 
 * {
@@ -94,4 +95,8 @@ input[type="search"]::-webkit-search-decoration:hover, input[type="search"]::-we
 
 .search__suggestions li:hover {
   background-color: var(--suggestion-hover-bg-color);
+}
+
+#searchField.search__nav {
+  border-bottom: 1px solid var(--separator-color);
 }
