@@ -34,7 +34,7 @@ input[type="search"]::-webkit-search-decoration:hover, input[type="search"]::-we
 
 .container {
   height: 100%;
-  padding-top: 5rem;
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
 }
