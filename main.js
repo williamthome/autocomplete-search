@@ -1,5 +1,9 @@
 const suggestionsUrl = "./suggestions.json"
 
+/**
+ *
+ * @returns {Promise<string[]|undefined>}
+ */
 async function getSuggestions() {
   try {
     const response = await fetch(suggestionsUrl)
@@ -36,8 +40,6 @@ function fillSuggestionsList(suggestions) {
   suggestionsList.appendChild(suggestionsFragment)
 }
 
-getSuggestions().then(fillSuggestionsList)
-
 const searchField = document.getElementById("searchField")
 
 function onSuggestionsScroll(e) {
@@ -50,4 +52,22 @@ function onSuggestionsScroll(e) {
 
   scrollTop === 0 && isSearchFieldFloating && searchField.classList.remove(searchFieldFloatClassName)
   scrollTop > 0 && !isSearchFieldFloating && searchField.classList.add(searchFieldFloatClassName)
+}
+
+async function onUserSearch(e) {
+  const suggestions = await getSuggestions()
+  if (!suggestions) {
+    alert("Some error occured. Press F12 and check the console.")
+    return
+  }
+
+  /** @type {HTMLInputElement} */
+  const searchElem = e.target
+  const userSearchValue = searchElem.value.toLowerCase()
+
+  const matchResult = suggestions
+    .map(s => s.toLowerCase())
+    .filter(s => s.includes(userSearchValue))
+
+  fillSuggestionsList(matchResult)
 }

@@ -15,7 +15,8 @@
 <body>
   <main class="container">
     <form action="https://google.com/search" target="_blank" class="search">
-      <input id="searchField" type="search" name="q" placeholder="Type to search for something...">
+      <input id="searchField" type="search" name="q" placeholder="Type to search for something..."
+        oninput="onUserSearch(event)">
       <div class="search__suggestions" onscroll="onSuggestionsScroll(event)">
         <ul id="suggestionsList"></ul>
       </div>
